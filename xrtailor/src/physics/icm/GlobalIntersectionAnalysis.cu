@@ -145,7 +145,7 @@ int GlobalIntersectionAnalysis::FloodFillIntersectionIslands(std::shared_ptr<Phy
 
     auto iter = thrust::find_if(
         intersection_states_.begin(), intersection_states_.end(),
-        [] __device__(const IntersectionState& i_state) { return i_state.color == -1; });
+        [] __host__ __device__(const IntersectionState& i_state) { return i_state.color == -1; });
 
     if (iter == intersection_states_.end())
       break;  // all intersections have been colored

@@ -165,7 +165,7 @@ ImpactZones IsolateImpactZones(int deform, thrust::device_vector<Impact> indepen
 
     auto iter =
         thrust::find_if(zones.colors.begin(), zones.colors.end(),
-                        [] __device__(const int& color) { return color == IMPACT_NOT_COLORED; });
+                        [] __host__ __device__(const int& color) { return color == IMPACT_NOT_COLORED; });
 
     if (iter == zones.colors.end()) {
 #ifdef IMPACT_ZONE_ISOLATION_DEBUG
@@ -262,7 +262,7 @@ thrust::host_vector<ImpactZone> IsolateImpacts(int deform, thrust::device_vector
 
     auto iter =
         thrust::find_if(impact_colors.begin(), impact_colors.end(),
-                        [] __device__(const int& color) { return color == IMPACT_NOT_COLORED; });
+                        [] __host__ __device__(const int& color) { return color == IMPACT_NOT_COLORED; });
 
     if (iter == impact_colors.end()) {
 #ifdef IMPACT_ZONE_ISOLATION_DEBUG
