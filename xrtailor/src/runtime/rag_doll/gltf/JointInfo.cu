@@ -1,6 +1,6 @@
 ﻿#include <xrtailor/runtime/rag_doll/gltf/JointInfo.cuh>
 
-#include <xrtailor/runtime/rag_doll/gltf/GltfFunc.cuh>
+#include <xrtailor/runtime/rag_doll/gltf/GltfFuncUtils.hpp>
 
 #include <xrtailor/core/DeviceHelper.cuh>
 

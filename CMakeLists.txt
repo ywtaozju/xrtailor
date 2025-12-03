@@ -111,7 +111,6 @@ target_sources(${PROJECT_NAME}
 target_precompile_headers(${PROJECT_NAME}
     PRIVATE
         "$<$<COMPILE_LANGUAGE:CXX>:${XRTAILOR_INCLUDE_DIR}/xrtailor/core/Precompiled.h>"
-        "$<$<COMPILE_LANGUAGE:CUDA>:${XRTAILOR_INCLUDE_DIR}/xrtailor/core/Precompiled.h>"
 )
 
 configure_file(

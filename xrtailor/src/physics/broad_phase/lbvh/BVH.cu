@@ -641,7 +641,7 @@ void BVH::Construct(Scalar scr) {
 
   const auto aabb_whole = thrust::reduce(
       aabbs_.begin() + num_internal_nodes_, aabbs_.end(), default_aabb,
-      [] __device__(const Bounds& lhs, const Bounds& rhs) { return lhs.Merge(rhs); });
+      [] __host__ __device__(const Bounds& lhs, const Bounds& rhs) { return lhs.Merge(rhs); });
   CUDA_CHECK_LAST();
 
   root_aabb_ = aabb_whole;
@@ -674,7 +674,7 @@ void BVH::Construct(Scalar scr) {
   if (!morton_code_is_unique) {
     thrust::transform(
         morton.begin(), morton.end(), indices.begin(), morton64.begin(),
-        [] __device__(const unsigned int m, const unsigned int idx) {
+        [] __host__ __device__(const unsigned int m, const unsigned int idx) {
           unsigned long long int m64 = m;
           m64 <<= 32;  // expand 32-bit morton code to 64 bit
           m64 |= idx;  // assgin index to morton code so that the merged morton code is unique
